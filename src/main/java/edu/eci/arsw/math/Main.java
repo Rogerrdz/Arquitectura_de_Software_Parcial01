@@ -17,6 +17,15 @@ public class Main {
         System.out.println(bytesToHex(PiDigits.getDigits(0, 10)));
         System.out.println(bytesToHex(PiDigits.getDigits(1, 100)));
         System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
+
+        try {
+            long ini = System.currentTimeMillis();
+            System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000, 4)));
+            long fin = System.currentTimeMillis();
+            System.out.println("Tiempo paralelo: " + (fin - ini) + " ms");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();

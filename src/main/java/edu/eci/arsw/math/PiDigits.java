@@ -47,6 +47,39 @@ public class PiDigits {
         return digits;
     }
 
+    // Punto #2
+    public static byte[] getDigits(int start, int count, int N) throws InterruptedException {
+
+        PiDigitsThread[] threads = new PiDigitsThread[N];
+        int block = count / N;
+        int current = start;
+
+        for (int i = 0; i < N; i++) {
+            int size;
+            if (i == N - 1) {
+                size = count - block * i;
+            } else {
+                size = block;
+            }
+            threads[i] = new PiDigitsThread(current, size);
+            current += size;
+            threads[i].start();
+        }
+
+        byte[] result = new byte[count];
+        int index = 0;
+
+        for (int i = 0; i < N; i++) {
+            threads[i].join();
+            byte[] partial = threads[i].getResult();
+            for (int j = 0; j < partial.length; j++) {
+                result[index++] = partial[j];
+            }
+        }
+
+        return result;
+    }
+
     /// <summary>
     /// Returns the sum of 16^(n - k)/(8 * k + m) from 0 to k.
     /// </summary>
