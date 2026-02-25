@@ -16,11 +16,11 @@ public class Main {
     public static void main(String a[]) {
         System.out.println(bytesToHex(PiDigits.getDigits(0, 10)));
         System.out.println(bytesToHex(PiDigits.getDigits(1, 100)));
-        System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
-
+        
+        // Prueba 2 y 3 
         try {
             long ini = System.currentTimeMillis();
-            System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000, 4)));
+            PiDigits.getDigits(1, 3000000, 4); 
             long fin = System.currentTimeMillis();
             System.out.println("Tiempo paralelo: " + (fin - ini) + " ms");
         } catch (Exception e) {
@@ -39,7 +39,6 @@ public class Main {
         }
         StringBuilder sb=new StringBuilder();
         for (int i=0;i<hexChars.length;i=i+2){
-            //sb.append(hexChars[i]);
             sb.append(hexChars[i+1]);            
         }
         return sb.toString();
